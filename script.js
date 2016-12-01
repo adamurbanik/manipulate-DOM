@@ -1,32 +1,84 @@
-(function () {
+  'use strict';
 
-  (function createElements() {
-    var scriptTag = document.getElementsByTagName('script')[0];
+  var ManipulateDomModule = (function () {
 
-    for (var index = 100; index >= 1; index--) {
-      var div = createDiv(index);
+    function createElements() {
+      var scriptTag = document.getElementsByTagName('script')[0];
 
-      if (index % 3 === 0) {  
-        createButton.call(this, div);
+      for (var index = 100; index >= 1; index--) {
+        var div = createDiv(index);
+
+        if (index % 3 === 0) {
+          createButton.call(this, div);
+        }
+        scriptTag.parentNode.insertBefore(div, scriptTag.nextSibling);
       }
-      scriptTag.parentNode.insertBefore(div, scriptTag.nextSibling);
     }
+
+    function createDiv(index) {
+      var div = document.createElement('div');
+      div.innerHTML = `Element ${index}`;
+      div.className = 'element-class'
+      return div;
+    }
+
+    function createButton(div) {
+      var element = document.createElement("input");
+      element.type = 'button';
+      element.value = 'button';
+      element.className = 'btnDiv';
+      element.onclick = function () {
+        this.parentNode.style.display = 'none';
+      }
+      div.appendChild(element);
+    }
+    createElements();
+
+    return {
+      createElements: createElements,
+    }
+
   })();
 
-  function createDiv(index) {
-    var div = document.createElement('div');
-    div.innerHTML = `Element ${index}`;
-    return div;
-  }
 
-  function createButton(div) { 
-    var element = document.createElement("input");
-    element.type = 'button';
-    element.value = 'button';
-    element.onclick =  function() {
-      this.parentNode.style.display = 'none';
-    }
-    div.appendChild(element);
-  }
 
-})()
+
+
+
+
+
+
+
+
+// (function () {
+
+//   (function createElements() {
+//     var scriptTag = document.getElementsByTagName('script')[0];
+
+//     for (var index = 100; index >= 1; index--) {
+//       var div = createDiv(index);
+
+//       if (index % 3 === 0) {  
+//         createButton.call(this, div);
+//       }
+//       scriptTag.parentNode.insertBefore(div, scriptTag.nextSibling);
+//     }
+//   })();
+
+//   function createDiv(index) {
+//     var div = document.createElement('div');
+//     div.innerHTML = `Element ${index}`;
+//     return div;
+//   }
+
+//   function createButton(div) { 
+//     var element = document.createElement("input");
+//     element.type = 'button';
+//     element.value = 'button';
+//     element.onclick =  function() {
+//       this.parentNode.style.display = 'none';
+//     }
+//     div.appendChild(element);
+//   }
+
+// })();
