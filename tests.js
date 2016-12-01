@@ -1,31 +1,8 @@
 describe('set directive', function () {
-  var elm, scope;
-
-  beforeEach(module('myTestingApp'));
-
-  beforeEach(inject(function ($rootScope, $compile) {
-    elm = angular.element(
-      '<div>' +
-      '<set elements="elements">' +
-      '</set>' +
-      '</div>');
-
-    scope = $rootScope.$new();
-    scope.elements = [];
-    for (let index = 1; index <= 100; index++) {
-      scope.elements.push({
-        id: `${index}`,
-        name: `element ${index}`
-      })
-    }
-
-    $compile(elm)(scope);
-    scope.$digest();
-  }));
+  var elm;
 
   it('should create items', function () {
-    var result = elm[0].querySelectorAll('.element-class');
-    var elements = angular.element(result);
+
 
     expect(elements.length).toBe(100);
   });
